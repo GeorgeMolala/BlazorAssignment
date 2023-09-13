@@ -1,0 +1,98 @@
+﻿@page "/"
+@inherits DeviceControllerBase
+
+
+
+
+<h2>Devices</h2>
+
+
+<div>
+    <button class="btn btn-secondary" @onclick="hideShow">Add Device</button>
+
+</div>
+
+<div id="AddDev" class="blackArea" hidden="@hide">
+
+    <h3 class="CompHead">Add Device</h3>
+
+    <div class="textArea container">
+        <EditForm class="" Model="@dev" OnValidSubmit="AddDevice">
+            <DataAnnotationsValidator />
+
+
+            <ValidationMessage For="@(()=>dev.Name)" />
+            <div class="align-content-center">
+                <div class="row input-group NameInput">
+                    <input class="form-control mb-3" type="text" @bind="dev.Name" placeholder="Device Name e.g Samsung" />
+                </div>
+
+
+                <ValidationMessage For="@(()=>dev.DeviceType)" />
+                <div class="row input-group DevTyp">
+                    <select @bind="dev.DeviceType" class="DeviceType custom-select mb-3">
+                        @foreach (var devType in Enum.GetValues(typeof(DeviceType)))
+                        {
+                            <option value="@devType">
+                                @devType
+                            </option>
+                        }
+
+                    </select>
+                </div>
+
+                <div class="row input-group">
+                    <button type="submit" class="btn btn-secondary mr-3 mb-3" >Save</button>
+                    <button class="btn btn-secondary mb-3 " @onclick="hideShow">Cancel</button>
+                </div>
+            </div>
+        </EditForm>
+    </div>
+
+
+</div>
+
+
+
+
+<div class="pt-5">
+    @if (state.Devices == null)
+    {
+        <p><em>List Empty</em></p>
+    }
+    else
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Device Type</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var Device in state.Devices)
+                {
+                    <tr>
+                        <td>@Device.Name</td>
+                        <td>@Device.DeviceType</td>
+
+                    </tr>
+                }
+            </tbody>
+
+
+        </table>
+
+    }
+</div>
+
+
+
+
+
+
+
+
+
+

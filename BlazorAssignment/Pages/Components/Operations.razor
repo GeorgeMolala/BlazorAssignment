@@ -1,0 +1,162 @@
+﻿@page "/listOperations"
+@inherits OperationControllerBase
+
+<h2>Operations</h2>
+
+<div>
+    <button class="btn btn-secondary" @onclick="hideShow">Add Device</button>
+
+</div>
+
+
+@* For Modal successful *@
+<div class="Infor" hidden="@ModalHide">
+    <p class="Inforbody" style="display:inline-flex">Operation Added Successfully!</p>
+    <br />
+    <button class="btn btn-secondary mb-3 ModalBtn" @onclick="hideModal">Ok</button>
+</div>
+
+
+
+@* For Modal Delete Confirmation *@
+<div class="Infor" hidden="@ModalDeleteHide">
+    <p class="Deletebody" style="display:inline-flex">Are you sure?</p>
+    <br />
+    <div class="row">
+        <button class="btn btn-secondary mr-3 mb-3 ModalBtnDel" @onclick="DeleteConfirmed">Yes</button>
+        <button class="btn btn-secondary mb-3" @onclick="DeleteCanceled">No</button>
+    </div>   
+</div>
+
+
+
+<div id="AddOperation" class="blackArea" hidden="@hide">
+    <h3 class="CompHead">Add Operation</h3>
+
+
+
+
+    <div class="textArea container">
+        @if (state.Devices.Count == 0)
+        {
+            <h1>Please Add device first.....</h1>
+        }
+        else
+        {
+
+
+
+            //Adding Operation
+            <EditForm class="" Model="@Oper" OnValidSubmit="AddOperation">
+
+                <DataAnnotationsValidator/>
+                <div>
+
+
+                    <ValidationMessage For="@(()=>Oper.Name)" />
+                    <div class="row pl-2 input-group">
+                        <label class="pr-3">Name</label>
+                        <input type="text" @bind="Oper.Name" class="form-control mb-3" placeholder="Name of operation" />
+
+                    </div>
+
+
+                    <ValidationMessage For="@(()=>Oper.OrderInWhichToPerform)" />
+                    <div class="row input-group">
+                        <label class="pr-3">Sequence Number</label>
+                        <input type="text" class="form-control mb-3" @bind="Oper.OrderInWhichToPerform" placeholder="Operation Number" />
+                    </div>
+
+
+                    <ValidationMessage For="@(()=>Oper.Device.DeviceID)" />
+                    <div class="row input-group">
+                        <label class="pr-3">Device Name</label>
+                        <select class="custom-select mb-3" @bind="Oper.Device.DeviceID">
+                            @foreach (var Device in state.Devices)
+                            {
+                                <option selected value="0">Select Device</option>
+                                <option value="@Device.DeviceID">
+                                    @Device.Name
+                                </option>
+                            }
+
+                        </select>
+                    </div>
+
+                    <ValidationMessage For="@(()=>Data)" />
+                    <div class="row input-group">
+
+                        <InputFile class="form-control-file mb-3" type="image" OnChange="load" placeholder="Operation Number" />
+
+                    </div>
+
+
+                    <div class="row input-group">
+                        <button type="submit" class="btn btn-secondary mr-3 mb-3">Save</button>
+                        <button class="btn btn-secondary mb-3" @onclick="hideShow">Cancel</button>
+
+                    </div>
+                </div>
+            </EditForm>
+        }
+    </div>
+</div>
+
+
+
+
+<div class="pt-5">
+
+    @if (state.Operations == null)
+    {
+        <p><em>List Empty</em></p>
+    }
+    else
+    {
+
+
+        @foreach (var Operation in state.Operations)
+        {
+
+
+
+<div class="card Card-padding" style="width: 18rem; display:inline-flex">
+
+    @{
+        if (Operation.ImageData != null)
+        {<img src="data:image/jpg;base64,@Convert.ToBase64String(Operation.ImageData)" class="ImageUp" alt="Image" /> }
+        else
+        {<img src="~/Images/empty.jpg" class="ImageUp" alt="Image" /> }
+    }
+
+
+    <div class="card-body">
+        <h5 class="card-title">Name: @Operation.Name</h5>
+        <div class="Description">
+            <label>Sequence Number: @Operation.OrderInWhichToPerform</label>
+            <label>Device Name: @Operation.Device.Name</label>
+
+        </div>
+
+        <button class="btn btn-secondary" @onclick="() => Delete(Operation.OperationID)">Delete</button>
+
+
+    </div>
+</div>
+
+
+        }
+    }
+
+</div>
+
+
+
+
+
+
+
+
+
+
+

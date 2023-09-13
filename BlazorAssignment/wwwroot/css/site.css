@@ -1,0 +1,107 @@
+@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
+
+html, body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+a, .btn-link {
+    color: #0366d6;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+}
+
+.content {
+    padding-top: 1.1rem;
+}
+.Card-padding
+{
+    margin:10px 10px 10px 10px;
+}
+.valid.modified:not([type=checkbox]) {
+    outline: 1px solid #26b050;
+}
+
+.invalid {
+    outline: 1px solid red;
+}
+
+.validation-message {
+    color: red;
+}
+.CompHead{
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font:bold;
+    font-size:xx-large;
+    padding:15px 0 0 10px;
+}
+.textArea {
+    padding: 20px 0 20px 50px;
+    display:inline-flex;
+    justify-items:center;
+    
+}
+
+#blazor-error-ui {
+    background: lightyellow;
+    bottom: 0;
+    box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
+    display: none;
+    left: 0;
+    padding: 0.6rem 1.25rem 0.7rem 1.25rem;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+.blackArea {
+    width: 30%;
+    height: 100%;
+    background-color: #f8f9fa;
+    z-index: -1;
+    border-radius: 7px;
+    margin-top: 15px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin-left: 15rem;
+}
+.Infor {
+    width: 35%;
+    height: 50%;
+    background-color: #f8f9fa;
+    z-index: -1;
+    border-radius: 7px;
+    margin-top: 15px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin-left: 15rem;
+}
+.Inforbody{
+ padding:20px 20px 20px 20px;
+ font-family:'Times New Roman';
+ font-weight:500;
+ font-size:x-large;
+}
+
+.ModalBtn{
+    padding:0 15px 0 15px;
+    margin-left:40%;
+}
+.ModalBtnDel {
+    padding: 0 15px 0 15px;
+    margin-left: 32%;
+}
+.Deletebody {
+    padding: 20px 20px 20px 20px;
+    font-family: 'Times New Roman';
+    font-weight: 500;
+    font-size: x-large;
+    margin-left: 25%;
+}
+
+#blazor-error-ui .dismiss {
+    cursor: pointer;
+    position: absolute;
+    right: 0.75rem;
+    top: 0.5rem;
+}
